@@ -1,0 +1,57 @@
+<?xml version="1.0"?>
+<config>
+	<tabs>
+		<practice translate="label">
+			<label>Practice Extension</label>
+			<sort_order>10</sort_order>
+		</practice>
+	</tabs>
+	<sections>
+		<practice_test translate="label" module="practice_test">  <!-- module name is healper tag name -->
+			<label>Practie Test1</label>
+			<tab>practice</tab>
+			<frontend_type>text</frontend_type>
+			<sort_order>999</sort_order>
+			<show_in_default>1</show_in_default>
+			<show_in_website>1</show_in_website>
+			<show_in_store>1</show_in_store>
+			<groups>
+				<settings translate="label">
+					<label>Test1 Settings</label>
+					<frontend_type>text</frontend_type>
+					<sort_order>1</sort_order>
+					<show_in_default>1</show_in_default>
+					<show_in_website>1</show_in_website>
+					<show_in_store>1</show_in_store>
+					<fields>
+						<test1_name translate="label, comment">
+							<label>Test 1 name</label>
+							<comment><![CDATA[in second]]></comment>
+							<frontend_type>text</frontend_type>
+							<sort_order>1</sort_order>
+							<show_in_default>1</show_in_default>
+							<show_in_website>1</show_in_website>
+							<show_in_store>1</show_in_store>
+						</test1_name>
+
+						<test1_enabled>
+							<label>Enable Banner Module</label>
+                            <!-- Field label -->
+                            <frontend_type>select</frontend_type>
+                            <!-- Frontend input type -->
+                            <source_model>practice_override/enabledisable</source_model>
+                            <!-- Source model -->
+                            <sort_order>10</sort_order>
+                            <!-- Field sort order -->
+                            <show_in_default>1</show_in_default>
+                            <!-- Show in default config -->
+                            <show_in_website>1</show_in_website>
+                            <!-- Show in website config -->
+                            <show_in_store>1</show_in_store>
+						</test1_enabled>
+					</fields>
+				</settings>
+			</groups>
+		</practice_test>
+	</sections>
+</config>

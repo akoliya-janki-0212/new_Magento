@@ -1,0 +1,28 @@
+<?xml version="1.0"?>
+<config>
+    <modules>
+        <Practice_Product>
+            <version>0.1.0</version>
+        </Practice_Product>
+    </modules>
+    <admin>
+        <routers>
+            <adminhtml>
+                <args>
+                    <modules>
+                        <Practice_Product before="Mage_Adminhtml">Practice_Product_Adminhtml</Practice_Product>
+                    </modules>
+                </args>
+            </adminhtml>
+        </routers>
+    </admin>
+    
+    <global>
+        <helpers>
+            <practice_product>
+                <class>Practice_Product_Helper</class>
+            </practice_product>
+        </helpers>
+    </global>
+
+</config>

@@ -1,0 +1,8 @@
+<config>
+    <modules>
+        <Practice_Override>
+            <active>true</active>
+            <codePool>local</codePool>
+        </Practice_Override>
+    </modules>
+</config>

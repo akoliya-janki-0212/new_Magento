@@ -1,0 +1,27 @@
+<?xml version="1.0"?>
+<config>
+    <menu>
+        <practice_product translate="title" module="practice_product"> <!-- module name is same as healper name -->
+            <title>Product</title>
+            <action>adminhtml/product/index</action>
+            <sort_order>100</sort_order>
+        </practice_product>
+        <!-- <catalog translate="title" module="catalog">
+            <children>
+                <practice_product translate="title" module="catalog">
+                    <title>Product</title>
+                    <action>adminhtml/product/index</action>
+                    <sort_order>100</sort_order>
+                    <children>
+                        <practice_product1 translate="title" module="catalog">
+                            <title>Product1</title>
+                            <action>adminhtml/product/index</action>
+                            <sort_order>100</sort_order>
+                        </practice_product1>
+                    </children>
+                </practice_product>
+            </children>
+        </catalog> -->
+
+    </menu>
+</config>

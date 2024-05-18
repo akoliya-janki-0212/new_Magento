@@ -1,0 +1,134 @@
+<?php $collection = $this->getCollectionData(); ?>
+
+<div id="filterContainer" style="margin:1rem 0">
+    <input type="text" id="globalFilter" placeholder="Global Filter">
+</div>
+<vdiv id="checkboxesContainer" style="margin:1rem 0">
+    <?php foreach ($this->getLabelsData() as $columnName => $label): ?>
+        <input type="checkbox" id="<?php echo $columnName; ?>Checkbox" <?php
+           foreach ($this->getDefaultColumns() as $key => $column) {
+               if ($column == $columnName) {
+                   echo 'checked';
+               }
+           }
+           ?>  data-column="<?php echo $columnName; ?>"><?php echo $label; ?>
+    <?php endforeach; ?>
+</vdiv>
+<button id="applyFilterBtn">Apply Filter</button>
+<div id="myGrid" class='grid-container1'></div>
+<script>
+    document.addEventListener('DOMContentLoaded', function () {
+        const labelData = <?php echo json_encode($this->getLabelsData()); ?>;
+
+        const colDefs = [];
+        Object.keys(labelData).forEach(columnName => {
+            colDefs.push({
+                headerName: labelData[columnName],
+                field: columnName
+            });
+        });
+        const gridOptions = {
+            rowData: <?php echo $collection ?>,
+            columnDefs:
+                colDefs,
+        };
+        const myGridElement = document.querySelector('#myGrid');
+        const grid = new MyGrid(myGridElement, gridOptions);
+        grid.renderGrid(0);
+
+        function sendAjaxRequest(checkedColumns) {
+            var url = '<?php echo $this->getUrl('*/*/update') ?>';
+            url += "/key/" + FORM_KEY;
+            var parameters = {
+                checkedData: JSON.stringify(checkedColumns)
+            };
+            new Ajax.Request(url, {
+                method: "post",
+                parameters: parameters,
+                onSuccess: function (response) {
+                    const newJson = JSON.parse(response.responseText);
+                    const mergedData = concatenateJSONArrays(grid.getRowData(), newJson);
+                    grid.setRowData(mergedData);
+                },
+            });
+
+        }
+        function concatenateJSONArrays(originalJson, newJson) {
+            const concatenateArray = [];
+            for (i = 0; i <= originalJson.length; i++) {
+                concatenateArray.push(Object.assign({}, originalJson[i], newJson[i]));
+            }
+            return concatenateArray;
+        }
+
+
+
+        /*let checkedColumnsRecords = [];
+          const checkboxes = document.querySelectorAll('#checkboxesContainer input[type="checkbox"]');
+         checkboxes.forEach(checkbox => {
+             checkbox.addEventListener('change', function () {
+                 const column = this.getAttribute('data-column');
+                 if (this.checked && !checkedColumnsRecords.includes(column)) {
+                     checkedColumnsRecords.push(column);
+                 //sendAjaxRequest(column);
+                 }
+             });
+         }); */
+
+
+
+        // Retuen checked Array which is Required To make Url
+        const checkedColumnsArray = [];
+        const defaultCheck = <?php echo json_encode($this->getDefaultColumns()); ?>;
+        const applyFilterBtn = document.querySelector('#applyFilterBtn');
+        applyFilterBtn.addEventListener('click', function () {
+            checkedColumnsArray.length = 0;
+            const checkboxes = document.querySelectorAll('#checkboxesContainer input[type="checkbox"]');
+
+            checkboxes.forEach(checkbox => {
+                const column = checkbox.getAttribute('data-column');
+                if (checkbox.checked) {
+                    if (!defaultCheck.includes(column)) {
+                        checkedColumnsArray.push(column);
+                        defaultCheck[column] = true;
+                    }
+                }
+            });
+           sendAjaxRequest(checkedColumnsArray);
+        });
+    });
+</script>
+<script>
+    //-------------------------- get data from solr
+  /*   document.getElementById('addFilters').addEventListener('click', function () {
+        solrbuilder = new SolrUrlBuilder();
+        const params = {
+            indent: "true",
+            "q.op": "OR",
+            q: "*:*",
+            rows: 10,
+            wt: "json",
+            fl: "product_id",
+            df: null,
+            fq: null,
+        };
+        const jsUrl = solrbuilder.createUrl(params);
+        sendAjax(jsUrl);
+    });
+
+    function sendAjax(jsUrl) {
+        var formData = new FormData();
+        formData.append('url', jsUrl);
+        formData.append('form_key', '<?php // echo $this->getFormKey(); ?>');
+    const xhr = new XMLHttpRequest();
+    xhr.onreadystatechange = function () {
+        if (xhr.readyState === XMLHttpRequest.DONE) {
+            console.log(xhr.responseText);
+        }
+    };
+    const url = '<?php // echo $this->getUrl('*/*/url'); ?>';
+    xhr.open('POST', url);
+    xhr.send(formData);
+    }
+ * /
+</script>

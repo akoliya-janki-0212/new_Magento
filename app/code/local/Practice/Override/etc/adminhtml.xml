@@ -1,0 +1,28 @@
+<?xml version="1.0"?>
+<config>
+    <acl>
+        <resources>
+            <admin>
+                <children>
+                    <catalog>
+                        <children>
+                            <products>
+                                <children>
+                                    <edit translate="title">
+                                        <title>Edit</title>
+                                    </edit>
+                                    <delete translate="title">
+                                        <title>delete</title>
+                                    </delete>
+                                </children>
+                                <delete translate="title">
+                                    <title>delete</title>
+                                </delete>
+                            </products>
+                        </children>
+                    </catalog>
+                </children>
+            </admin>
+        </resources>
+    </acl>
+</config>
