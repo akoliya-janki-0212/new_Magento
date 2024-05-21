@@ -880,7 +880,6 @@ class Mage_Catalog_Model_Convert_Adapter_Product
          * Back compatibility event
          */
         Mage::dispatchEvent($this->_eventPrefix . '_after', array());
-
         $entity = new Varien_Object();
         Mage::getSingleton('index/indexer')->processEntityAction(
             $entity, self::ENTITY, Mage_Index_Model_Event::TYPE_SAVE

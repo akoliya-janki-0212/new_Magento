@@ -21,6 +21,14 @@
                     <product_list>Practice_Override_Block_Catalog_Product_List</product_list>
                 </rewrite>
             </catalog>
+            <checkout>
+                <rewrite>
+                    <cart>Practice_Override_Block_Cart</cart>
+                    <cart_item_renderer>Practice_Override_Block_Item_Renderer</cart_item_renderer>
+                    <cart_item_renderer_grouped>Practice_Override_Block_Item_Grouped</cart_item_renderer_grouped>
+                    <cart_item_renderer_configurable>Practice_Override_Block_Item_Configurable</cart_item_renderer_configurable>
+                </rewrite>
+            </checkout>
             <adminhtml>
                 <rewrite>
                     <catalog_product_grid>Practice_Override_Block_Adminhtml_Catalog_Product_Grid</catalog_product_grid>
@@ -31,6 +39,24 @@
             </adminhtml>
         </blocks>
         <events>
+            <sales_quote_item_set_product>
+                <observers>
+                    <test_demo_attribute_copy>
+                        <type>singleton</type>
+                        <class>practice_override/observer</class>
+                        <method>copyCustomProductAttributes</method>
+                    </test_demo_attribute_copy>
+                </observers>
+            </sales_quote_item_set_product>
+            <mne_bhukh_lagi_che>
+                <observers>
+                    <test_demo>
+                        <type>singleton</type>
+                        <class>practice_test/observer</class>
+                        <method>my_prac</method>
+                    </test_demo>
+                </observers>
+            </mne_bhukh_lagi_che>
             <admin_system_config_changed_section_practice_test>
                 <observers>
                     <banner_config_observer>

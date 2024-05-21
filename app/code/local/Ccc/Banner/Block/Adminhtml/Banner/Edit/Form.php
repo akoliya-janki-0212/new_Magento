@@ -11,7 +11,6 @@ class Ccc_Banner_Block_Adminhtml_Banner_Edit_Form extends Mage_Adminhtml_Block_W
         $this->setTitle(Mage::helper('banner')->__('Banner Information'));
         $this->setData('banner_form', $this->getUrl('*/*/save'));
     }
-
     /**
      * Load Wysiwyg on demand and Prepare layout
      */
@@ -22,21 +21,15 @@ class Ccc_Banner_Block_Adminhtml_Banner_Edit_Form extends Mage_Adminhtml_Block_W
             $this->getLayout()->getBlock('head')->setCanLoadTinyMce(true);
         }
     }
-
     protected function _prepareForm()
     {
         $model = Mage::registry('banner_block');
         $isEdit = ($model && $model->getId());
-
         $form = new Varien_Data_Form(
             array('id' => 'edit_form', 'action' => $this->getUrl('*/*/save'), 'method' => 'post', 'enctype' => 'multipart/form-data')
         );
-
         $form->setHtmlIdPrefix('block_');
-
-
         $fieldset = $form->addFieldset('base_fieldset', array('legend' => Mage::helper('banner')->__('General Information'), 'class' => 'fieldset-wide'));
-
         if ($isEdit && $model->getBannerId()) {
             $fieldset->addField(
                 'banner_id',
@@ -46,8 +39,6 @@ class Ccc_Banner_Block_Adminhtml_Banner_Edit_Form extends Mage_Adminhtml_Block_W
                 )
             );
         }
-
-
         $fieldset->addField(
             'banner_name',
             'text',
@@ -58,7 +49,6 @@ class Ccc_Banner_Block_Adminhtml_Banner_Edit_Form extends Mage_Adminhtml_Block_W
                 'required' => true,
             )
         );
-
         $fieldset->addField(
             'banner_image',
             'file',
@@ -70,7 +60,6 @@ class Ccc_Banner_Block_Adminhtml_Banner_Edit_Form extends Mage_Adminhtml_Block_W
                 'required' => !$isEdit,
             )
         );
-
         // Add current image display if in edit mode
         if ($isEdit) {
             $currentImageUrl = $model->getBannerImage();
@@ -86,7 +75,6 @@ class Ccc_Banner_Block_Adminhtml_Banner_Edit_Form extends Mage_Adminhtml_Block_W
                 );
             }
         }
-
         $fieldset->addField(
             'status',
             'select',
@@ -104,7 +92,6 @@ class Ccc_Banner_Block_Adminhtml_Banner_Edit_Form extends Mage_Adminhtml_Block_W
         if (!($model->getId())) {
             $model->setData('status', '1');
         }
-
         $fieldset->addField(
             'show_on',
             'select',
@@ -119,13 +106,10 @@ class Ccc_Banner_Block_Adminhtml_Banner_Edit_Form extends Mage_Adminhtml_Block_W
                 ),
             )
         );
-
         $form->setValues($model->getData());
         $form->setUseContainer(true);
         $this->setForm($form);
-
         return parent::_prepareForm();
     }
-
 }
 ?>

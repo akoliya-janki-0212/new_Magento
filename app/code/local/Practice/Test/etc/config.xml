@@ -2,7 +2,7 @@
 <config>
     <modules>
         <Practice_Test>
-            <version>0.1.2</version>
+            <version>0.1.6</version>
         </Practice_Test>
     </modules>
     <admin>
@@ -24,7 +24,19 @@
                 </practice_test>
             </updates>
         </layout>
+
+    </adminhtml>
+    <global>
         <events>
+            <sales_quote_item_set_product>
+                <observers>
+                    <test_demo_attribute_copy>
+                        <type>singleton</type>
+                        <class>practice_test/observer</class>
+                        <method>copyCustomProductAttributes</method>
+                    </test_demo_attribute_copy>
+                </observers>
+            </sales_quote_item_set_product>
             <before_test_add>
                 <observers>
                     <practice_test>
@@ -58,8 +70,6 @@
                 </observers>
             </admin_session_user_login_success>
         </events>
-    </adminhtml>
-    <global>
         <helpers>
             <practice_test>
                 <class>Practice_Test_Helper</class>

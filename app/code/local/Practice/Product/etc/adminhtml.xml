@@ -1,7 +1,8 @@
 <?xml version="1.0"?>
 <config>
     <menu>
-        <practice_product translate="title" module="practice_product"> <!-- module name is same as healper name -->
+        <practice_product translate="title" module="practice_product"> <!-- module name is same as
+            healper name -->
             <title>Product</title>
             <action>adminhtml/product/index</action>
             <sort_order>100</sort_order>
@@ -22,6 +23,44 @@
                 </practice_product>
             </children>
         </catalog> -->
-
     </menu>
+    <acl>
+        <resources>
+            <admin>
+                <children>
+                    <practice_product translate="title" module="practice_product">
+                        <title>Product</title>
+                        <children>
+                            <index translate="title">
+                                <title>Show Product</title>
+                                <sort_order>10</sort_order>
+                            </index>
+                            <new translate="title">
+                                <title>Add Product</title>
+                                <sort_order>10</sort_order>
+                            </new>
+                            <edit translate="title">
+                                <title>Edit Product</title>
+                                <sort_order>10</sort_order>
+                            </edit>
+                            <delete translate="title">
+                                <title>Delete Product</title>
+                                <sort_order>10</sort_order>
+                            </delete>
+                        </children> 
+                    </practice_product>
+                    <system>
+                        <children>
+                            <config>
+                                <children>
+                                    <practice_product translate="title" module="practice_product">
+                                    </practice_product>
+                                </children>							
+                            </config>
+                        </children>
+                    </system>
+                </children>
+            </admin>
+        </resources>
+    </acl>
 </config>

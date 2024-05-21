@@ -5,7 +5,7 @@ class Practice_Test_Block_Adminhtml_Test_Edit_Form extends Mage_Adminhtml_Block_
     protected function _prepareForm()
     {
         $form = new Varien_Data_Form(array('id' => 'edit_form', 'action' => $this->getUrl('*/*/save'), 'method' => 'post'));
-        $form->setUseContainer(true);
+        $form->setUseContainer(true); // put this only this file when use tabs
         $this->setForm($form);
         return parent::_prepareForm();
     }

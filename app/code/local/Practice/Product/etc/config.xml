@@ -2,7 +2,7 @@
 <config>
     <modules>
         <Practice_Product>
-            <version>0.1.0</version>
+            <version>0.1.2</version>
         </Practice_Product>
     </modules>
     <admin>
@@ -16,13 +16,62 @@
             </adminhtml>
         </routers>
     </admin>
-    
+    <adminhtml>
+        <layout>
+            <updates>
+                <practice_product>
+                    <file>practice_product.xml</file>
+                </practice_product>
+            </updates>
+        </layout>
+    </adminhtml>
     <global>
+        <blocks>
+            <practice_product>
+                <class>Practice_Product_Block</class>
+            </practice_product>
+        </blocks>
         <helpers>
             <practice_product>
                 <class>Practice_Product_Helper</class>
             </practice_product>
         </helpers>
+        <models>
+            <practice_product>
+                <class>Practice_Product_Model</class>
+                <resourceModel>practice_product_resource</resourceModel>
+            </practice_product>
+            <practice_product_resource>
+                <class>Practice_Product_Model_Resource</class>
+                <entities>
+                    <product>
+                        <table>practice_product</table>
+                    </product>
+                </entities>
+            </practice_product_resource>
+        </models>
+        <resources>
+            <practice_product_setup>
+                <setup>
+                    <module>Practice_Product</module>
+                    <!-- <class>Mage_Core_Model_Resource_Setup</class> -->
+                </setup>
+                <connection>
+                    <use>core_setup</use>
+                </connection>
+            </practice_product_setup>
+        </resources>
     </global>
-
+    <crontab>
+        <jobs>
+            <product>
+                <schedule>
+                    <cron_expr>*/5 * * * *</cron_expr>
+                </schedule>
+                <run>
+                    <model>practice_product/observer::demo</model>
+                </run>
+            </product>
+        </jobs>
+    </crontab>
 </config>

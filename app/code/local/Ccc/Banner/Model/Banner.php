@@ -5,7 +5,6 @@ class Ccc_Banner_Model_Banner extends Mage_Core_Model_Abstract
     {
         $this->_init('ccc_banner/banner');
     }
-
 }
 
 ?>

@@ -170,3 +170,6 @@
 [5] C:\xampp\htdocs\Magento\app\Mage.php:686
 [6] C:\xampp\htdocs\Magento\index.php:83
 \</pre>
+2024-05-20T07:44:56+00:00 CRIT (2): Not valid template file:frontend\base\default\template\cart/cart.phtml
+2024-05-20T07:45:21+00:00 CRIT (2): Not valid template file:frontend\base\default\template\cart/cart.phtml
+2024-05-20T08:14:37+00:00 CRIT (2): Not valid template file:frontend\base\default\template\cart/cart.phtml

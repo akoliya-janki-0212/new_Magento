@@ -9,8 +9,8 @@ class Practice_Test_Adminhtml_TestController extends Mage_Adminhtml_Controller_A
     }
     public function indexAction()
     {
-        Mage::dispatchEvent('before_test_add',array('name'=>'janki'));
-        Mage::dispatchEvent('before_test_adds');
+        // Mage::dispatchEvent('before_test_add',array('name'=>'janki'));
+        // Mage::dispatchEvent('before_test_adds');
         // print_r(Mage::getStoreConfig('practice_test/settings/test1_name'));
         $this->_title($this->__('Test'));
         $this->_initAction();

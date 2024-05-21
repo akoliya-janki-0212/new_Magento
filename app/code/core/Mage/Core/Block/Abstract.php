@@ -629,6 +629,7 @@ abstract class Mage_Core_Block_Abstract extends Varien_Object
      */
     protected function _getChildHtml($name, $useCache = true)
     {
+        // echo $name;
         if ($useCache && isset($this->_childrenHtmlCache[$name])) {
             return $this->_childrenHtmlCache[$name];
         }

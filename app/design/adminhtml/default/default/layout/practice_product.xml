@@ -1,0 +1,19 @@
+<?xml version="1.0"?>
+<layout>
+    <adminhtml_product_index>
+        <reference name="content">
+            <block type="practice_product/adminhtml_product" name="practice_product" />
+        </reference>
+    </adminhtml_product_index>
+    <adminhtml_product_new>
+        <update handle="adminhtml_product_edit" />
+    </adminhtml_product_new>
+    
+    <adminhtml_product_edit>
+        <update handle="editor" />
+        <reference name="content">
+            <block type="practice_product/adminhtml_product_edit" name="product_edit"></block>
+        </reference>
+    </adminhtml_product_edit>
+
+</layout>

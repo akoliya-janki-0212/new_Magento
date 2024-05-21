@@ -58,8 +58,8 @@ class Practice_Test_Block_Adminhtml_Test_Grid extends Mage_Adminhtml_Block_Widge
         );
         return parent::_prepareColumns();
     }
-    // public function getRowUrl($row)
-    // {
-    //     return $this->getUrl('*/*/edit', array('test1_id' => $row->getId()));
-    // }
+    public function getRowUrl($row)
+    {
+        return $this->getUrl('*/*/edit', array('test1_id' => $row->getId()));
+    }
 }

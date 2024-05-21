@@ -38,8 +38,14 @@ $numColumns = sizeof($this->getColumns());
 echo 'Custom';
 // $obj=$this->getJsObjectName().''.demo();
 // var_dump($obj);
+
 ?>
 <button name="demobtn" id='demoid'>Click</button>
+<button name="showFormName" id='showFormButton'>Form</button>
+<div id="myModal" class="configuration_form">
+   
+</div>
+
 <?php if ($this->getCollection()): ?>
     <?php if ($this->canDisplayContainer()): ?>
         <?php if ($this->getGridHeader()): ?>

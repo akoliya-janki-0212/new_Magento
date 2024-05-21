@@ -3,10 +3,21 @@
     <adminhtml_banner_index>
         <reference name="content">
             <block type="ccc_banner/adminhtml_banner" name="banner" />
+            <!-- <block type="practice_product/adminhtml_product_grid" name="product_custom"/> -->
+            <!-- <block type="ccc_banner/adminhtml_banner" name="product_custom"/> -->
         </reference>
         <reference name="head">
+            <!-- <action method="addJs">
+                <script>lib/jquery/jquery-1.10.2.js</script>
+            </action> -->
             <action method="addJs">
                 <script>banner/banner.js</script>
+            </action>
+            <action method="addJs">
+                <script>banner/customform.js</script>
+            </action>
+            <action method="addCss">
+                <stylesheet>css/banner/banner.css</stylesheet>
             </action>
         </reference>
     </adminhtml_banner_index>
