@@ -1,0 +1,178 @@
+2024-05-22T03:09:21+00:00 DEBUG (7): Practice_Product_Model_Product Object
+(
+    [_eventPrefix:protected] => practice_product
+    [_eventObject:protected] => product
+    [_resourceName:protected] => practice_product/product
+    [_resource:protected] => 
+    [_resourceCollectionName:protected] => practice_product/product_collection
+    [_cacheTag:protected] => 
+    [_dataSaveAllowed:protected] => 1
+    [_isObjectNew:protected] => 
+    [_data:protected] => Array
+        (
+            [key] => b46d7abdcfd13ae839b390dbd50f0c44
+            [form_key] => JLYSk5vL8G9AAhKW
+            [product_id] => 2
+            [product_name] => Product 22
+            [created_at] => 
+            [updated_at] => 5/19/2024
+            [status] => 0
+        )
+
+    [_hasDataChanges:protected] => 1
+    [_origData:protected] => Array
+        (
+            [product_id] => 2
+            [product_name] => Product 22
+            [status] => 0
+            [created_at] => 2024-05-22 08:38:19
+            [updated_at] => 2024-05-19 00:00:00
+            [price] => 
+        )
+
+    [_idFieldName:protected] => product_id
+    [_isDeleted:protected] => 
+    [_oldFieldsMap:protected] => Array
+        (
+        )
+
+    [_syncFieldsMap:protected] => Array
+        (
+        )
+
+)
+
+2024-05-22T03:09:21+00:00 DEBUG (7): Practice_Product_Model_Product Object
+(
+    [_eventPrefix:protected] => practice_product
+    [_eventObject:protected] => product
+    [_resourceName:protected] => practice_product/product
+    [_resource:protected] => 
+    [_resourceCollectionName:protected] => practice_product/product_collection
+    [_cacheTag:protected] => 
+    [_dataSaveAllowed:protected] => 1
+    [_isObjectNew:protected] => 
+    [_data:protected] => Array
+        (
+            [key] => b46d7abdcfd13ae839b390dbd50f0c44
+            [form_key] => JLYSk5vL8G9AAhKW
+            [product_id] => 2
+            [product_name] => Product 22
+            [created_at] => 
+            [updated_at] => 5/19/2024
+            [status] => 0
+            [name] => abc
+        )
+
+    [_hasDataChanges:protected] => 1
+    [_origData:protected] => Array
+        (
+            [product_id] => 2
+            [product_name] => Product 22
+            [status] => 0
+            [created_at] => 2024-05-22 08:38:19
+            [updated_at] => 2024-05-19 00:00:00
+            [price] => 
+        )
+
+    [_idFieldName:protected] => product_id
+    [_isDeleted:protected] => 
+    [_oldFieldsMap:protected] => Array
+        (
+        )
+
+    [_syncFieldsMap:protected] => Array
+        (
+        )
+
+)
+
+2024-05-22T03:10:39+00:00 DEBUG (7): Practice_Product_Model_Product Object
+(
+    [_eventPrefix:protected] => practice_product
+    [_eventObject:protected] => product
+    [_resourceName:protected] => practice_product/product
+    [_resource:protected] => 
+    [_resourceCollectionName:protected] => practice_product/product_collection
+    [_cacheTag:protected] => 
+    [_dataSaveAllowed:protected] => 1
+    [_isObjectNew:protected] => 
+    [_data:protected] => Array
+        (
+            [key] => a245b1d229ccc9332723487227dc37f7
+            [form_key] => JtisnIp5R3EccxSf
+            [product_id] => 2
+            [product_name] => Product
+            [created_at] => 
+            [updated_at] => 5/19/2024
+            [status] => 0
+        )
+
+    [_hasDataChanges:protected] => 1
+    [_origData:protected] => Array
+        (
+            [product_id] => 2
+            [product_name] => Product 22
+            [status] => 0
+            [created_at] => 2024-05-22 08:39:21
+            [updated_at] => 2024-05-19 00:00:00
+            [price] => 
+        )
+
+    [_idFieldName:protected] => product_id
+    [_isDeleted:protected] => 
+    [_oldFieldsMap:protected] => Array
+        (
+        )
+
+    [_syncFieldsMap:protected] => Array
+        (
+        )
+
+)
+
+2024-05-22T03:10:39+00:00 DEBUG (7): Practice_Product_Model_Product Object
+(
+    [_eventPrefix:protected] => practice_product
+    [_eventObject:protected] => product
+    [_resourceName:protected] => practice_product/product
+    [_resource:protected] => 
+    [_resourceCollectionName:protected] => practice_product/product_collection
+    [_cacheTag:protected] => 
+    [_dataSaveAllowed:protected] => 1
+    [_isObjectNew:protected] => 
+    [_data:protected] => Array
+        (
+            [key] => a245b1d229ccc9332723487227dc37f7
+            [form_key] => JtisnIp5R3EccxSf
+            [product_id] => 2
+            [product_name] => Product
+            [created_at] => 
+            [updated_at] => 5/19/2024
+            [status] => 0
+            [name] => abc
+        )
+
+    [_hasDataChanges:protected] => 1
+    [_origData:protected] => Array
+        (
+            [product_id] => 2
+            [product_name] => Product 22
+            [status] => 0
+            [created_at] => 2024-05-22 08:39:21
+            [updated_at] => 2024-05-19 00:00:00
+            [price] => 
+        )
+
+    [_idFieldName:protected] => product_id
+    [_isDeleted:protected] => 
+    [_oldFieldsMap:protected] => Array
+        (
+        )
+
+    [_syncFieldsMap:protected] => Array
+        (
+        )
+
+)
+

@@ -2,7 +2,7 @@
 <config>
     <modules>
         <Practice_Product>
-            <version>0.1.2</version>
+            <version>0.1.3</version>
         </Practice_Product>
     </modules>
     <admin>
@@ -47,6 +47,9 @@
                     <product>
                         <table>practice_product</table>
                     </product>
+                    <category>
+                        <table>practice_categorys</table>
+                    </category>
                 </entities>
             </practice_product_resource>
         </models>
@@ -61,6 +64,17 @@
                 </connection>
             </practice_product_setup>
         </resources>
+        <events>
+            <practice_product_save_before>
+                <observers>
+                    <product__save_before>
+                        <type>singleton</type>
+                        <class>practice_product/observer</class>
+                        <method>customPrice</method>
+                    </product__save_before>
+                </observers>
+            </practice_product_save_before>
+        </events>    
     </global>
     <crontab>
         <jobs>

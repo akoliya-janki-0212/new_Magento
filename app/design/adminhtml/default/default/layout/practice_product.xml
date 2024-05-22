@@ -3,7 +3,16 @@
     <adminhtml_product_index>
         <reference name="content">
             <block type="practice_product/adminhtml_product" name="practice_product" />
+            
         </reference>
+        <!-- <reference name="head">
+            <action method="addJs">
+                <script>lib/jquery/jquery-1.10.2.js</script>
+            </action>
+            <action method="addJs">
+                <script>customproduct.js</script>
+            </action>
+        </reference> -->
     </adminhtml_product_index>
     <adminhtml_product_new>
         <update handle="adminhtml_product_edit" />
@@ -13,6 +22,20 @@
         <update handle="editor" />
         <reference name="content">
             <block type="practice_product/adminhtml_product_edit" name="product_edit"></block>
+        </reference>
+        <reference name="left">
+            <block type="practice_product/adminhtml_product_edit_tabs" name="test_edit_tabs">
+                <block type="practice_product/adminhtml_product_edit_tab_product" name="test_edit_tab_product" />
+                <block type="practice_product/adminhtml_product_edit_tab_category" name="test_edit_tab_category" />
+                <action method="addTab">
+                    <name>product</name>
+                    <block>test_edit_tab_product</block>
+                </action>
+                <action method="addTab">
+                    <name>category</name>
+                    <block>test_edit_tab_category</block>
+                </action>
+            </block>
         </reference>
     </adminhtml_product_edit>
 

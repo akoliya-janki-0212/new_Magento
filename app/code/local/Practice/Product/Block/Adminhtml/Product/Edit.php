@@ -23,9 +23,9 @@ class Practice_Product_Block_Adminhtml_Product_Edit extends Mage_Adminhtml_Block
      */
     public function getHeaderText()
     {
-        if (Mage::registry('product_registry')->getId()) {
+        if (Mage::registry('practice_product')->getId()) {
             return Mage::helper('practice_product')->__("Edit Product '%s'", 
-            $this->escapeHtml(Mage::registry('product_registry')->getTitle()));
+            $this->escapeHtml(Mage::registry('practice_product')->getTitle()));
         } else {
             return Mage::helper('practice_product')->__('New Product');
         }

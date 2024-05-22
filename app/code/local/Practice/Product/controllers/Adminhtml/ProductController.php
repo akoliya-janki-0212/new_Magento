@@ -21,14 +21,15 @@ class Practice_Product_Adminhtml_ProductController extends Mage_Adminhtml_Contro
     protected function editAction()
     {
         $this->_title($this->__('practice_product'))->_title($this->__('Product'));
-        // 1. Get ID and create model
-        $id = $this->getRequest()->getParam('product_id');
-        $model = Mage::getModel('practice_product/product');
 
-        // 2. Initial checking
+        $id = $this->getRequest()->getParam('product_id');
+        $modelProduct = Mage::getModel('practice_product/product');
+        $modelCategory = Mage::getModel('practice_product/category');
+
         if ($id) {
-            $model->load($id);
-            if (!$model->getId()) {
+            $modelProduct->load($id);
+            $modelCategory->load($id);
+            if (!$modelProduct->getId()) {
                 Mage::getSingleton('adminhtml/session')->
                     addError(Mage::helper('practice_product')->
                         __('This product no longer exists.'));
@@ -36,33 +37,38 @@ class Practice_Product_Adminhtml_ProductController extends Mage_Adminhtml_Contro
                 return;
             }
         }
-        $this->_title($model->getId() ? $model->getTitle() : $this->__('New Banner'));
 
-        // 3. Set entered data if was error when we do save
         $data = Mage::getSingleton('adminhtml/session')->getFormData(true);
         if (!empty($data)) {
-            $model->setData($data);
+            $modelProduct->setData($data);
+            $modelCategory->setData($data);
         }
-        // 4. Register model to use later in blocks
-        Mage::register('product_registry', $model);
-        // 5. Build edit form
+        Mage::register('practice_product', $modelProduct);
+        Mage::register('practice_category', $modelCategory);
+
 
         $this->_initAction()
             ->_addBreadcrumb($id ? Mage::helper('practice_product')->__('Edit Banner') : Mage::helper('practice_product')->__('New Banner'), $id ? Mage::helper('practice_product')->__('Edit Banner') : Mage::helper('practice_product')->__('New Banner'));
         $this->renderLayout();
     }
-    protected function saveAction(){
+    protected function saveAction()
+    {
         if ($data = $this->getRequest()->getParams()) {
             // Initialize model and set data
-            $model = Mage::getModel('practice_product/product');
+            $modelProduct = Mage::getModel('practice_product/product');
+            $modelCategory = Mage::getModel('practice_product/category');
             if ($id = $this->getRequest()->getParam('product_id')) {
-                $model->load($id);
+                $modelProduct->load($id);
+                $modelCategory->load($id);
             }
             // Set other data
-            $model->setData($data);
+            $modelProduct->setData($data);
+            $modelCategory->setData($data);
             try {
                 // Save the data
-                $model->save();
+                $modelProduct->save();
+                $modelCategory->save();
+                // die;
                 // Display success message
                 Mage::getSingleton('adminhtml/session')->addSuccess(
                     Mage::helper('practice_product')->__('The Product has been saved.')
@@ -71,7 +77,7 @@ class Practice_Product_Adminhtml_ProductController extends Mage_Adminhtml_Contro
                 Mage::getSingleton('adminhtml/session')->setFormData(false);
                 // Check if 'Save and Continue'
                 if ($this->getRequest()->getParam('back')) {
-                    $this->_redirect('*/*/edit', array('banner_id' => $model->getId(), '_current' => true));
+                    $this->_redirect('*/*/edit', array('product_id' => $modelProduct->getId(), '_current' => true));
                     return;
                 }
                 // Go to grid

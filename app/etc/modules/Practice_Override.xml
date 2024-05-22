@@ -1,7 +1,7 @@
 <config>
     <modules>
         <Practice_Override>
-            <active>true</active>
+            <active>false</active>
             <codePool>local</codePool>
         </Practice_Override>
     </modules>
