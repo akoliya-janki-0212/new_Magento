@@ -1,0 +1,8 @@
+<config>
+    <modules>
+      <Exam_Partmanager>
+        <active>true</active>
+        <codePool>local</codePool>
+      </Exam_Partmanager>
+    </modules>
+</config>

@@ -205,3 +205,7 @@
 [5] C:\xampp\htdocs\Magento\app\Mage.php:686
 [6] C:\xampp\htdocs\Magento\index.php:83
 \</pre>
+2024-05-22T09:06:53+00:00 DEBUG (7): Security problem: cms/block has not been whitelisted.
+2024-05-22T09:06:53+00:00 DEBUG (7): Security problem: cms/block has not been whitelisted.
+2024-05-22T09:07:35+00:00 DEBUG (7): Security problem: cms/block has not been whitelisted.
+2024-05-22T09:07:35+00:00 DEBUG (7): Security problem: cms/block has not been whitelisted.

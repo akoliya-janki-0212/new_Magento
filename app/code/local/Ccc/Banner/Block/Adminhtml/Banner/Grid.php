@@ -62,7 +62,7 @@ class Ccc_Banner_Block_Adminhtml_Banner_Grid extends Mage_Adminhtml_Block_Widget
                 'index' => 'status',
                 'is_allowed' => $this->checkColumn('status'), // ACL check
 
-            ),
+            ), 
             'show_on' => array(
                 'header' => Mage::helper('banner')->__('Show On'),
                 'align' => 'left',

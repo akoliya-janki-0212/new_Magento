@@ -1,8 +1,0 @@
-<config>
-    <modules>
-      <Exam_Practice>
-        <active>true</active>
-        <codePool>local</codePool>
-      </Exam_Practice>
-    </modules>
-  </config>

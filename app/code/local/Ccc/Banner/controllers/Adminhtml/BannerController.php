@@ -313,6 +313,7 @@ class Ccc_Banner_Adminhtml_BannerController extends Mage_Adminhtml_Controller_Ac
     public function massStatusAction()
     {
         $bannerIds = $this->getRequest()->getParam('banner_id');
+     
         $status = $this->getRequest()->getParam('status');
 
         if (!is_array($bannerIds)) {

@@ -1,0 +1,33 @@
+<!-- <?xml version="1.0"?> -->
+<layout>
+    <adminhtml_partmanager_index>
+        <reference name="content">
+            <block type="exam_partmanager/adminhtml_partmanager" ifconfig="section/group/permission_field" name="exam_partmanager" />
+        </reference>
+        <!-- <reference name="head">
+            <action method="addJs">
+                <script>lib/jquery/jquery-1.10.2.js</script>
+            </action>
+            <action method="addJs">
+                <script>customproduct.js</script>
+            </action>
+        </reference> -->
+    </adminhtml_partmanager_index>
+    <adminhtml_partmanager_new>
+        <update handle="adminhtml_partmanager_edit" />
+    </adminhtml_partmanager_new>
+
+    <adminhtml_partmanager_edit>
+        <update handle="editor" />
+        <reference name="content">
+            <block type="exam_partmanager/adminhtml_partmanager_edit" name="partmanager_edit"></block>
+        </reference>
+
+    </adminhtml_partmanager_edit>
+    <adminhtml_partmanager_manager>
+        <reference name="content">
+            <block type="exam_partmanager/adminhtml_manager" name="exam_manager" template="exam/manager.phtml
+            "/>
+        </reference>
+    </adminhtml_partmanager_manager>
+</layout>
