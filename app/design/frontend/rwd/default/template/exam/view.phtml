@@ -49,25 +49,33 @@ $_helper = $this->helper('catalog/output'); ?>
                         </div>
                     </div>
                 <?php endif; ?>
-
-                <?php 
-                $model = Mage::getModel('exam_partmanager/parts')->getCollection()
-                ->addFieldToFilter('product_id',$_product->getId())
-                ->getFirstItem();
-                print_r($model);
-                ?>
-               <?php if ($model->getMfrId('mfr_id')): ?>
-                    <div class="brand">
-                        <?php echo $this->__('Mfr Id :') ?>
-                        <p><?php echo $_product->getData('mfr_id'); ?></p>
-                    </div>
-                <?php endif; ?>
-                <?php if ($_product->getData('part_number')): ?>
-                    <div class="brand">
-                        <?php echo $this->__('Part Number :') ?>
-                        <p><?php echo $_product->getData('part_number'); ?></p>
-                    </div>
-                <?php endif; ?>
+                <?php
+                $collection = Mage::getModel('exam_partmanager/mfr')
+                    ->getCollection()
+                    ->addFieldToSelect('mfr')
+                    ->addFieldToSelect('address');
+                $collection->getSelect()->join(
+                    array('parts' => $collection->getTable('exam_partmanager/parts')),
+                    'main_table.mfr_id = parts.mfr_id',
+                    array('avg_qty' => new Zend_Db_Expr('AVG(parts.part_qty)'))
+                )->group('main_table.mfr_id'); ?>
+                <?php foreach ($collection->getData() as $result) {
+                    if ($result['mfr']): ?>
+                        <div class="mfr">
+                            <?php echo $this->__("Mfr :  {$result['mfr']}") ?>
+                        </div>
+                    <?php endif; ?>
+                    <?php if ($result['address']): ?>
+                        <div class="address">
+                            <?php echo $this->__("Address :  {$result['address']}") ?>
+                        </div>
+                    <?php endif; ?>
+                    <?php if ($result['avg_qty']): ?>
+                        <div class="avg_qty">
+                            <?php echo $this->__("Avarage Qty :  {$result['avg_qty']}") ?>
+                        </div>
+                    <?php endif; ?>
+                <?php } ?>
 
                 <?php echo $this->getChildHtml('other'); ?>
                 <?php if ($_product->isSaleable() && $this->hasOptions()): ?>

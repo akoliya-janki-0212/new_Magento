@@ -5,12 +5,7 @@ class Exam_Partmanager_Block_Adminhtml_Partmanager_Grid extends Mage_Adminhtml_B
     {
         parent::__construct();
         $this->setId('partGrid');
-        // $this->setTemplate('Exam/grid/container.phtml');
-        // $this->setDefaultSort('products_id');
-        // $this->setDefaultDir('DESC');
-        // $this->setSaveParametersInSession(true);
-        // $this->setUseAjax(true);
-        // $this->setVarNameFilter('products_filter');
+
     }
     protected function _prepareCollection()
     {
@@ -20,15 +15,7 @@ class Exam_Partmanager_Block_Adminhtml_Partmanager_Grid extends Mage_Adminhtml_B
     }
     protected function _prepareColumns()
     {
-        // $this->addColumn(
-        //     'mfr_id',
-        //     array(
-        //         'header' => Mage::helper('exam_partmanager')->__('Mfr Id'),
-        //         'width' => '50px',
-        //         'type' => 'number',
-        //         'index' => 'mfr_id',
-        //     )
-        // );
+      
         $this->addColumn(
             'mfr',
             array(
@@ -95,12 +82,17 @@ class Exam_Partmanager_Block_Adminhtml_Partmanager_Grid extends Mage_Adminhtml_B
         $this->addColumn(
             'is_active',
             array(
-                'header' => Mage::helper('banner')->__('is_active'),
+                'header' => Mage::helper('exam_partmanager')->__('is_active'),
                 'align' => 'left',
                 'index' => 'is_active',
-               
+                'type' => 'options',
+                'options' => array(
+                    1 => Mage::helper('exam_partmanager')->__('Yes'),
+                    2 => Mage::helper('exam_partmanager')->__('No')
+                ),
             )
         );
+
         return parent::_prepareColumns();
 
     }

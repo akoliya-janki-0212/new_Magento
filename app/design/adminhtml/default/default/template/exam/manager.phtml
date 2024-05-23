@@ -1,7 +1,6 @@
 <?php
 $options = $this->getOption();
 
-
 // Unload the product model to free up resources
 ?>
 <select id="productSelect">
@@ -24,13 +23,12 @@ $options = $this->getOption();
                 <th>Manufacturer</th>
                 <th>Part</th>
                 <th>Quantity</th>
+                <th>Min Quantity</th>
             </tr>
         </thead>
         <tbody id="manufacturerPartsBody">
-
         </tbody>
     </table>
-</div>
 </div>
 <?php if (Mage::getStoreConfig('exam_partmanager/general/enable_save_mfr_part_qty')) { ?>
     <button id="saveData">Save Manufacturer Part Quantities</button>
@@ -39,7 +37,6 @@ $options = $this->getOption();
     document.observe('dom:loaded', function () {
         $('loadDetails').observe('click', function () {
             var productId = $('productSelect').value;
-
             new Ajax.Request('<?php echo $this->getUrl('*/*/getDetails'); ?>', {
                 method: 'post',
                 parameters: {
@@ -60,55 +57,83 @@ $options = $this->getOption();
     $('saveData').observe('click', function () {
         var manufacturerPartQuantities = {};
         var productId = $('productSelect').value;
-
         $$('#manufacturerPartsBody tr').each(function (row) {
             var manufacturer = row.down('td:first-child').textContent.trim();
             var part = row.down('td:nth-child(2)').textContent.trim();
             var quantity = row.down('input').value.trim();
+            var min_qty = $("min-" + manufacturer).innerText;
             if (!manufacturerPartQuantities[manufacturer]) {
                 manufacturerPartQuantities[manufacturer] = [];
             }
             manufacturerPartQuantities[manufacturer].push({
                 part: part,
-                quantity: quantity
+                quantity: quantity,
+                min_qty: min_qty,
             });
         });
-
         var data = {
             productId: productId,
             manufacturerPartQuantities: Object.toJSON(manufacturerPartQuantities),
             form_key: '<?php echo $this->getFormKey(); ?>'
         };
-
         saveManufacturerPartQuantities(data);
     });
+
     function fillData(data) {
-        // Display product details
         $('productName').update(data.productDetails.name);
         $('productSKU').update(data.productDetails.sku);
-
-        // Display part numbers
         var partNumbers = data.productDetails.part_number.split(';');
         var partNumbersHTML = '';
         partNumbers.each(function (partNumber) {
             partNumbersHTML += '<li>' + partNumber + '</li>';
         });
         $('partNumbersList').update(partNumbersHTML);
-
-        // Display manufacturer parts with input boxes for quantities
         var manufacturerPartsHTML = '';
         Object.keys(data.manufacturerDetails).forEach(function (manufacturer) {
             var parts = data.manufacturerDetails[manufacturer].split(';');
-            parts.each(function (part) {
+            parts.each(function (part, index) {
                 manufacturerPartsHTML += '<tr>' +
                     '<td>' + manufacturer + '</td>' +
                     '<td>' + part + '</td>' +
-                    '<td><input type="text" name="' + manufacturer + '_' + part + '_qty" /></td>' +
-                    '</tr>';
+                    '<td><input type="text" name="' + manufacturer + '_' + part + '_qty" class="quantity-input" data-manufacturer="' + manufacturer + '"/></td>';
+                if (index === 0) {
+                    manufacturerPartsHTML += '<td rowspan="' + parts.length + '" class="min-quantity" id="min-' + manufacturer + '"></td>';
+
+                }
+                manufacturerPartsHTML += '</tr>';
             });
         });
         $('manufacturerPartsBody').update(manufacturerPartsHTML);
+
+        // Add event listener for quantity input changes
+        $$('.quantity-input').each(function (input) {
+            input.observe('change', calculateMinQuantities);
+        });
     }
+
+    function calculateMinQuantities() {
+        var manufacturerQuantities = {};
+
+        $$('.quantity-input').each(function (input) {
+            var manufacturer = input.getAttribute('data-manufacturer');
+            var quantity = parseInt(input.value, 10);
+            if (!manufacturerQuantities[manufacturer]) {
+                manufacturerQuantities[manufacturer] = [];
+            }
+            if (!isNaN(quantity)) {
+                manufacturerQuantities[manufacturer].push(quantity);
+            }
+        });
+
+        Object.keys(manufacturerQuantities).forEach(function (manufacturer) {
+            var minQuantity = Math.min.apply(0, manufacturerQuantities[manufacturer]);
+            if (!(minQuantity == 'Infinity')) {
+
+                $('min-' + manufacturer).update(minQuantity);
+            }
+        });
+    }
+
     function saveManufacturerPartQuantities(data) {
         new Ajax.Request('<?php echo $this->getUrl('*/*/saveMfrParts'); ?>', {
             method: 'post',

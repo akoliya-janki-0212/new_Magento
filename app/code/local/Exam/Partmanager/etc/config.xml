@@ -73,6 +73,13 @@
                 <class>Exam_Partmanager_Helper</class>
             </exam_partmanager>
         </helpers>
+        <blocks>
+            <adminhtml>
+                <rewrite>
+                    <catalog_product_grid>Exam_Partmanager_Block_Adminhtml_Catalog_Product_Grid</catalog_product_grid>
+                </rewrite>
+            </adminhtml>
+        </blocks>
     </global>
 </config>
     

@@ -159,23 +159,18 @@ class Exam_Partmanager_Adminhtml_PartmanagerController extends Mage_Adminhtml_Co
     }
     public function managerAction()
     {
-        if (Mage::getSingleton('admin/session')->isAllowed('customer/index/manager')) {
             $this->_initAction();
             $this->renderLayout();
-        } else {
-            $this->_redirect('*/*/index');
-        }
     }
     public function getDetailsAction()
     {
         $productId = $this->getRequest()->getPost('productId');
-
         $data = array();
         $product = Mage::getModel('catalog/product')->load($productId);
         if ($product->getId()) {
             $data['productDetails'] = array(
                 'name' => $product->getName(),
-                'price' => $product->getPrice(),
+                'sku' => $product->getSku(),
                 'part_number' => $product->getData('part_number'),
             );
             $manufacturerParts = array();
@@ -195,24 +190,25 @@ class Exam_Partmanager_Adminhtml_PartmanagerController extends Mage_Adminhtml_Co
         $productId = $this->getRequest()->getParam('productId');
         $manufacturerPartQuantitiesJson = $this->getRequest()->getParam('manufacturerPartQuantities');
         $manufacturerPartQuantities = json_decode($manufacturerPartQuantitiesJson, true);
+
         foreach ($manufacturerPartQuantities as $manufacturer => $parts) {
             $id = Mage::getModel('exam_partmanager/mfr')->getCollection()
                 ->addFieldToFilter('mfr', $manufacturer)
                 ->getFirstItem()
                 ->getId();
-            
             foreach ($parts as $partData) {
                 $part = $partData['part'];
                 $quantity = $partData['quantity'];
+                $minQty = $partData['min_qty'];
                 if (!empty($quantity)) {
                     $model = Mage::getModel('exam_partmanager/parts');
                     $model->setProductId($productId);
-                    $model->setMfrId($manufacturer);
+                    $model->setMfrId($id);
                     $model->setPartNumber($part);
                     $model->setPartQty($quantity);
                     $model->setCreatedAt(now());
                     $model->setUpdatedDate(now());
-                    // print_r($model->getData());
+                    $model->setAverageProductQty($minQty);
                     $model->save();
                 }
             }
@@ -231,12 +227,11 @@ class Exam_Partmanager_Adminhtml_PartmanagerController extends Mage_Adminhtml_Co
         $aclResource = '';
         switch ($action) {
             case 'manager':
-                $aclResource = 'customer/index/manager';
+                $aclResource = 'customer/manager';
                 break;
-            case 'grid':
-                $aclResource = 'customer/index/grid';
+            case 'index':
+                $aclResource = 'customer/index';
                 break;
-
         }
         return Mage::getSingleton('admin/session')->isAllowed($aclResource);
     }
