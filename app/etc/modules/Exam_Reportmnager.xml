@@ -1,0 +1,8 @@
+<config>
+    <modules>
+      <Exam_Reportmanager>
+        <active>true</active>
+        <codePool>local</codePool>
+      </Exam_Reportmanager>
+    </modules>
+</config>

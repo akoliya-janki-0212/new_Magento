@@ -825,7 +825,6 @@ class Mage_Checkout_Model_Type_Onepage
                 Mage::logException($e);
             }
         }
-
         $this->_checkoutSession->setLastQuoteId($this->getQuote()->getId())
             ->setLastSuccessQuoteId($this->getQuote()->getId())
             ->clearHelperData();
@@ -834,7 +833,6 @@ class Mage_Checkout_Model_Type_Onepage
         if ($order) {
             Mage::dispatchEvent('checkout_type_onepage_save_order_after',
                 array('order'=>$order, 'quote'=>$this->getQuote()));
-
             /**
              * a flag to set that there will be redirect to third party after confirmation
              * eg: paypal standard ipn

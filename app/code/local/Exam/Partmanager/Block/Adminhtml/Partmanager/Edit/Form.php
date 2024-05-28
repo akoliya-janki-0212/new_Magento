@@ -104,7 +104,6 @@ class Exam_Partmanager_Block_Adminhtml_Partmanager_Edit_Form extends Mage_Adminh
                 'title' => Mage::helper('exam_partmanager')->__('Created Date'),
                 'image'     => $this->getSkinUrl('images/grid-cal.gif'),
                 'format'    => Mage::app()->getLocale()->getDateFormat(Mage_Core_Model_Locale::FORMAT_TYPE_SHORT),
-                // Remove 'required' attribute only in edit mode
                 'required' => !$isEdit,
             )
         );
@@ -117,8 +116,6 @@ class Exam_Partmanager_Block_Adminhtml_Partmanager_Edit_Form extends Mage_Adminh
                 'title' => Mage::helper('exam_partmanager')->__('Updated_Date'),
                 'format'    => Mage::app()->getLocale()->getDateFormat(Mage_Core_Model_Locale::FORMAT_TYPE_SHORT),
                 'image'     => $this->getSkinUrl('images/grid-cal.gif'),
-
-                // Remove 'required' attribute only in edit mode
                 'required' => !$isEdit,
             )
         );

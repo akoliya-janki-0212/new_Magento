@@ -1,4 +1,4 @@
-<!-- <?xml version="1.0"?> -->
+<?xml version="1.0"?>
 <layout>
     <adminhtml_partmanager_index>
         <reference name="content">
@@ -26,8 +26,12 @@
     </adminhtml_partmanager_edit>
     <adminhtml_partmanager_manager>
         <reference name="content">
-            <block type="exam_partmanager/adminhtml_manager" name="exam_manager" template="exam/manager.phtml
-            "/>
+            <block type="exam_partmanager/adminhtml_manager" name="exam_manager" template="exam/manager.phtml"/>
+        </reference>
+        <reference name="head">
+            <action method="addJs">
+                <script>exam/partmanager.js</script>
+            </action>
         </reference>
     </adminhtml_partmanager_manager>
 </layout>

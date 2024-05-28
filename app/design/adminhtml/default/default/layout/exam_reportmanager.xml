@@ -1,0 +1,32 @@
+<?xml version="1.0"?>
+<layout>
+    <adminhtml_reportmanager_index>
+        <reference name="content">
+            <block type="exam_reportmanager/adminhtml_reportmanager" name="exam_reportmanager" />
+        </reference>
+    </adminhtml_reportmanager_index>
+    <adminhtml_reportmanager_new>
+        <update handle="adminhtml_reportmanager_edit" />
+    </adminhtml_reportmanager_new>
+
+    <adminhtml_reportmanager_edit>
+        <update handle="editor" />
+        <reference name="content">
+            <block type="exam_reportmanager/adminhtml_reportmanager_edit" name="reportmanager_edit"></block>
+        </reference>
+    </adminhtml_reportmanager_edit>
+    <adminhtml_catalog_product_index>
+        <reference name="head">
+            <action method="addJs">
+                <script>exam/reportmanager.js</script>
+            </action>
+        </reference>
+    </adminhtml_catalog_product_index>
+    <adminhtml_customer_index>
+        <reference name="head">
+            <action method="addJs">
+                <script>exam/reportmanager.js</script>
+            </action>
+        </reference>
+    </adminhtml_customer_index>
+</layout>

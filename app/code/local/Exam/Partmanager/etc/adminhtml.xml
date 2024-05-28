@@ -2,16 +2,21 @@
     <menu>
         <customer translate="title" module="customer">
             <children>
-                <index translate="title" module="exam_partmanager">
-                    <title>MFRs</title>
-                    <action>adminhtml/partmanager/index</action>
-                    <sort_order>10</sort_order>
-                </index>
-                <manager translate="title" module="exam_partmanager">
-                    <title>Manager Page</title>
-                    <action>adminhtml/partmanager/manager</action>
-                    <sort_order>10</sort_order>
-                </manager>
+                <partmanager>
+                    <title>Partmanager</title>
+                    <children>
+                        <index translate="title" module="exam_partmanager">
+                            <title>MFRs</title>
+                            <action>adminhtml/partmanager/index</action>
+                            <sort_order>10</sort_order>
+                        </index>
+                        <manager translate="title" module="exam_partmanager">
+                            <title>Manager Page</title>
+                            <action>adminhtml/partmanager/manager</action>
+                            <sort_order>10</sort_order>
+                        </manager>
+                    </children>
+                </partmanager>
             </children>
         </customer>
     </menu>
@@ -21,14 +26,18 @@
                 <children>
                     <customer translate="title" module="exam_partmanager">
                         <children>
-                            <index translate="title" module="exam_partmanager">
-                                <title>Grid</title>
-                                <sort_order>10</sort_order>
-                            </index>
-                            <manager translate="title">
-                                <title>Manager Page</title>
-                                <sort_order>10</sort_order>
-                            </manager>
+                            <partmanager>
+                                <children>
+                                    <index translate="title" module="exam_partmanager">
+                                        <title>Grid</title>
+                                        <sort_order>10</sort_order>
+                                    </index>
+                                    <manager translate="title">
+                                        <title>Manager Page</title>
+                                        <sort_order>10</sort_order>
+                                    </manager>
+                                </children>
+                            </partmanager>
                         </children>
                     </customer>
                     <system>

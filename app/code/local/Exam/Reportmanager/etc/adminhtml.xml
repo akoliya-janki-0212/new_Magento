@@ -1,0 +1,18 @@
+<config>
+    <menu>
+        <system translate="title" module="adminhtml">
+            <children>
+                <exam_reportmanager>
+                    <title>Reportmanager</title>
+                    <children>
+                        <reportgrid translate="title" module="exam_reportmanager">
+                            <title>Report Grid</title>
+                            <action>adminhtml/reportmanager/index</action>
+                            <sort_order>10</sort_order>
+                        </reportgrid>
+                    </children>
+                </exam_reportmanager>
+            </children>
+        </system>
+    </menu>
+</config>

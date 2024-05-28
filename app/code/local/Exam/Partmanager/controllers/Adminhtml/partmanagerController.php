@@ -159,8 +159,8 @@ class Exam_Partmanager_Adminhtml_PartmanagerController extends Mage_Adminhtml_Co
     }
     public function managerAction()
     {
-            $this->_initAction();
-            $this->renderLayout();
+        $this->_initAction();
+        $this->renderLayout();
     }
     public function getDetailsAction()
     {
@@ -190,7 +190,6 @@ class Exam_Partmanager_Adminhtml_PartmanagerController extends Mage_Adminhtml_Co
         $productId = $this->getRequest()->getParam('productId');
         $manufacturerPartQuantitiesJson = $this->getRequest()->getParam('manufacturerPartQuantities');
         $manufacturerPartQuantities = json_decode($manufacturerPartQuantitiesJson, true);
-
         foreach ($manufacturerPartQuantities as $manufacturer => $parts) {
             $id = Mage::getModel('exam_partmanager/mfr')->getCollection()
                 ->addFieldToFilter('mfr', $manufacturer)
@@ -201,15 +200,15 @@ class Exam_Partmanager_Adminhtml_PartmanagerController extends Mage_Adminhtml_Co
                 $quantity = $partData['quantity'];
                 $minQty = $partData['min_qty'];
                 if (!empty($quantity)) {
-                    $model = Mage::getModel('exam_partmanager/parts');
-                    $model->setProductId($productId);
-                    $model->setMfrId($id);
-                    $model->setPartNumber($part);
-                    $model->setPartQty($quantity);
-                    $model->setCreatedAt(now());
-                    $model->setUpdatedDate(now());
-                    $model->setAverageProductQty($minQty);
-                    $model->save();
+                    $model = Mage::getModel('exam_partmanager/parts')
+                        ->setProductId($productId)
+                        ->setMfrId($id)
+                        ->setPartNumber($part)
+                        ->setPartQty($quantity)
+                        ->setCreatedAt(now())
+                        ->setUpdatedDate(now())
+                        ->setAverageProductQty($minQty)
+                        ->save();
                 }
             }
         }
@@ -227,11 +226,13 @@ class Exam_Partmanager_Adminhtml_PartmanagerController extends Mage_Adminhtml_Co
         $aclResource = '';
         switch ($action) {
             case 'manager':
-                $aclResource = 'customer/manager';
+                $aclResource = 'customer/partmanager/manager';
                 break;
             case 'index':
-                $aclResource = 'customer/index';
+                $aclResource = 'customer/partmanager/index';
                 break;
+            default:
+                $aclResource = 'customer/partmanager';
         }
         return Mage::getSingleton('admin/session')->isAllowed($aclResource);
     }
