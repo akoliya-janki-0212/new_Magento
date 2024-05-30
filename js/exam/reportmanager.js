@@ -1,7 +1,5 @@
-
 varienGrid.prototype.saveReport = function () {
     reportType = getReportType();
-    console.log(reportType);
     var filters = [];
     $$('#' + this.containerId + ' .filter input', '#' + this.containerId + ' .filter select').each(function (element) {
         if (element.value) {
@@ -17,10 +15,15 @@ varienGrid.prototype.loadFilters = function () {
     var saveAjax = new SaveAjax("http://127.0.0.1/Magento/index.php/admin/reportmanager/loadreport/key/" + FORM_KEY);
     saveAjax.send({ reportType: getReportType() }, function (responseData) {
         if (responseData.success) {
-            applyStoredFilters(JSON.parse(responseData.filters));
+            if(responseData.filters){
+                applyStoredFilters(JSON.parse(responseData.filters));
+            }
+            else{
+                console.error("filter couldn't load")
+            }
         } else {
             console.error('Error loading filters.');
-        }
+        }            
     });
 }
 var SaveAjax = Class.create({
@@ -62,6 +65,7 @@ function applyStoredFilters(storedFilters) {
             element.value = filter.value;
         }
     });
+    console.log(gridObject());
     gridObject().doFilter();
 }
 function gridObject() {
@@ -76,5 +80,6 @@ function gridObject() {
     }
 }
 document.observe('dom:loaded', function () { 
+    console.log(gridObject());
     gridObject().loadFilters();
 });

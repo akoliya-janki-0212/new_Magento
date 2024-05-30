@@ -10,6 +10,12 @@
                             <action>adminhtml/reportmanager/index</action>
                             <sort_order>10</sort_order>
                         </reportgrid>
+                        <load translate="title" module="exam_reportmanager">
+                            <title>Load Page</title>
+                            <action>adminhtml/reportmanager/load</action>
+                            <sort_order>10</sort_order>
+                        </load>
+         
                     </children>
                 </exam_reportmanager>
             </children>

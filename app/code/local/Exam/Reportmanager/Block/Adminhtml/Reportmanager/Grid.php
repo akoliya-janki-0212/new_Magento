@@ -5,7 +5,6 @@ class Exam_Reportmanager_Block_Adminhtml_Reportmanager_Grid extends Mage_Adminht
     {
         parent::__construct();
         $this->setId('reportGrid');
-
     }
     protected function _prepareCollection()
     {
@@ -17,48 +16,30 @@ class Exam_Reportmanager_Block_Adminhtml_Reportmanager_Grid extends Mage_Adminht
     {
       
         $this->addColumn(
-            'mfr',
+            'user_id',
             array(
-                'header' => Mage::helper('exam_reportmanager')->__('Mfr'),
+                'header' => Mage::helper('exam_reportmanager')->__('User Name'),
                 'width' => '50px',
                 'type' => 'text',
-                'index' => 'mfr',
+                'index' => 'user_id',
             )
         );
         $this->addColumn(
-            'address',
+            'report_type',
             array(
-                'header' => Mage::helper('exam_reportmanager')->__('Address'),
+                'header' => Mage::helper('exam_reportmanager')->__('Report Type'),
                 'width' => '50px',
                 'type' => 'text',
-                'index' => 'address',
+                'index' => 'report_type',
             )
         );
         $this->addColumn(
-            'city',
+            'filter_data',
             array(
-                'header' => Mage::helper('exam_reportmanager')->__('City'),
+                'header' => Mage::helper('exam_reportmanager')->__('Filter Data'),
                 'width' => '50px',
                 'type' => 'text',
-                'index' => 'city',
-            )
-        );
-        $this->addColumn(
-            'state',
-            array(
-                'header' => Mage::helper('exam_reportmanager')->__('State'),
-                'width' => '50px',
-                'type' => 'text',
-                'index' => 'state',
-            )
-        );
-        $this->addColumn(
-            'country',
-            array(
-                'header' => Mage::helper('exam_reportmanager')->__('Country'),
-                'width' => '50px',
-                'type' => 'text',
-                'index' => 'country',
+                'index' => 'filter_data',
             )
         );
         $this->addColumn(
@@ -88,7 +69,7 @@ class Exam_Reportmanager_Block_Adminhtml_Reportmanager_Grid extends Mage_Adminht
                 'type' => 'options',
                 'options' => array(
                     1 => Mage::helper('exam_reportmanager')->__('Yes'),
-                    2 => Mage::helper('exam_reportmanager')->__('No')
+                    0 => Mage::helper('exam_reportmanager')->__('No')
                 ),
             )
         );
@@ -96,37 +77,5 @@ class Exam_Reportmanager_Block_Adminhtml_Reportmanager_Grid extends Mage_Adminht
         return parent::_prepareColumns();
 
     }
-    protected function _prepareMassaction()
-    {
-        $this->setMassactionIdField('mfr_id');
-        $this->getMassactionBlock()->setFormFieldName('mfr_id'); // Change to 'banner_id'
-
-        $activeOptions = Mage::getSingleton('exam_reportmanager/isactive')->getOptionArray();
-
-        array_unshift($activeOptions, array('label' => '', 'value' => ''));
-        $this->getMassactionBlock()->addItem(
-            'is_active',
-            array(
-                'label' => Mage::helper('exam_reportmanager')->__('Change Is active'),
-                'url' => $this->getUrl('*/*/massIsactive', array('_current' => true)),
-                'additional' => array(
-                    'visibility' => array(
-                        'name' => 'is_active',
-                        'type' => 'select',
-                        'class' => 'required-entry',
-                        'label' => Mage::helper('exam_reportmanager')->__('Is Active'),
-                        'values' => $activeOptions
-                    )
-                )
-            )
-        );
-
-        // Mage::dispatchEvent('banner_adminhtml_banner_grid_prepare_massaction', array('block' => $this));
-        return $this;
-    }
-
-    public function getRowUrl($row)
-    {
-        return $this->getUrl('*/*/edit', array('mfr_id' => $row->getId()));
-    }
+   
 }

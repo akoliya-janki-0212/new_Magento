@@ -29,4 +29,15 @@
             </action>
         </reference>
     </adminhtml_customer_index>
+    <adminhtml_reportmanager_load>
+        <reference name="content">
+            <block type="exam_reportmanager/adminhtml_load" name="exam_load"
+                template="exam/load.phtml" />
+        </reference>
+        <!-- <reference name="head">
+            <action method="addJs">
+                <script>exam/load.js</script>
+            </action>
+        </reference> -->
+    </adminhtml_reportmanager_load>
 </layout>

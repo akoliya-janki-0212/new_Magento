@@ -68,4 +68,9 @@ class Exam_Reportmanager_Adminhtml_ReportmanagerController extends Mage_Adminhtm
             $this->getResponse()->setBody(Mage::helper('core')->jsonEncode(array('success' => false, 'message' => $e->getMessage())));
         }
     }
+    public function loadAction()
+    {
+        $this->_initAction();
+        $this->renderLayout();
+    }
 }

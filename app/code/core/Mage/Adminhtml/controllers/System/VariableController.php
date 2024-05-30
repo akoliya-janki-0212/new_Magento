@@ -45,7 +45,6 @@ class Mage_Adminhtml_System_VariableController extends Mage_Adminhtml_Controller
             ->_addBreadcrumb(Mage::helper('adminhtml')->__('Custom Variables'), Mage::helper('adminhtml')->__('Custom Variables'));
         return $this;
     }
-
     /**
      * Initialize Variable object
      *
@@ -74,12 +73,10 @@ class Mage_Adminhtml_System_VariableController extends Mage_Adminhtml_Controller
     public function indexAction()
     {
         $this->_title($this->__('System'))->_title($this->__('Custom Variables'));
-
         $this->_initLayout()
             ->_addContent($this->getLayout()->createBlock('adminhtml/system_variable'))
             ->renderLayout();
     }
-
     /**
      * New Action (forward to edit action)
      *

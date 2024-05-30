@@ -1095,7 +1095,6 @@ class Mage_Adminhtml_Catalog_ProductController extends Mage_Adminhtml_Controller
 //                }
 //                Mage::throwException('data_invalid', implode("\n", $strErrors));
 //            }
-
             $product->validate();
             $product->save();
             $result['product_id'] = $product->getId();
